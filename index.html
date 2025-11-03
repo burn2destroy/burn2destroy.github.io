@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мій Кіберпанк Блог</title>
+  <title>burn2destroy</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    :root {
+      --neon-blue: #00ffff;
+      --neon-pink: #ff00ff;
+      --bg-dark: #0a0a0f;
+    }
 
     body {
       margin: 0;
       font-family: 'Share Tech Mono', monospace;
-      background-color: #0a0a0f;
-      color: #00ffff;
+      background-color: var(--bg-dark);
+      color: var(--neon-blue);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       background-image: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.05), transparent 25%),
                         radial-gradient(circle at 80% 80%, rgba(255,0,255,0.05), transparent 25%);
-      background-size: 200% 200%;
       animation: bgShift 20s ease infinite;
+      background-size: 200% 200%;
     }
 
     @keyframes bgShift {
@@ -25,59 +34,88 @@
     }
 
     header {
-      background-color: rgba(0, 0, 0, 0.8);
-      border-bottom: 2px solid #00ffff;
-      padding: 20px;
+      background: rgba(0,0,0,0.8);
+      border-bottom: 2px solid var(--neon-blue);
+      padding: 15px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    header h1 {
+    h1 {
       margin: 0;
-      font-size: 2em;
-      color: #ff00ff;
-      text-shadow: 0 0 10px #ff00ff;
+      font-size: 1.8em;
+      color: var(--neon-pink);
+      text-shadow: 0 0 8px var(--neon-pink);
     }
 
     nav {
-      margin-top: 15px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     nav a {
-      margin: 0 15px;
-      color: #00ffff;
+      color: var(--neon-blue);
       text-decoration: none;
       font-weight: bold;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #ff00ff;
-      text-shadow: 0 0 5px #ff00ff;
+      color: var(--neon-pink);
+      text-shadow: 0 0 5px var(--neon-pink);
     }
 
-    .language-toggle {
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--neon-blue);
+      border-radius: 20px;
+      overflow: hidden;
       cursor: pointer;
-      border: 1px solid #00ffff;
-      border-radius: 5px;
-      padding: 3px 8px;
-      margin-left: 15px;
+      margin-left: 10px;
+    }
+
+    .lang-switch span {
+      padding: 4px 10px;
+      font-size: 0.9em;
+      transition: 0.3s;
+    }
+
+    .lang-switch span.active {
+      background: var(--neon-blue);
+      color: #000;
+      text-shadow: none;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
     }
 
     .main-panel {
+      width: 100%;
       max-width: 700px;
-      margin: 50px auto;
-      padding: 30px;
-      background-color: rgba(0, 0, 0, 0.8);
-      border: 2px solid #ff00ff;
+      padding: 25px;
+      background: rgba(0,0,0,0.8);
+      border: 2px solid var(--neon-pink);
       border-radius: 12px;
-      box-shadow: 0 0 20px #ff00ff66;
+      box-shadow: 0 0 20px var(--neon-pink, 0.4);
     }
 
-    .main-panel h2 {
+    h2 {
       text-align: center;
-      color: #00ffff;
-      margin-bottom: 25px;
-      text-shadow: 0 0 10px #00ffff;
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+      margin-bottom: 20px;
     }
 
     .project-info {
@@ -87,62 +125,83 @@
     }
 
     .info-block {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid #00ffff;
+      background: rgba(0,255,255,0.05);
+      border: 1px solid var(--neon-blue);
       border-radius: 8px;
       padding: 15px;
       transition: 0.3s;
     }
 
     .info-block:hover {
-      background: rgba(255, 0, 255, 0.1);
-      box-shadow: 0 0 10px #ff00ff44;
+      background: rgba(255,0,255,0.1);
+      box-shadow: 0 0 10px var(--neon-pink, 0.4);
     }
 
-    .info-block strong {
+    strong {
       display: block;
-      color: #ff00ff;
-      margin-bottom: 8px;
+      color: var(--neon-pink);
+      margin-bottom: 5px;
     }
 
     footer {
       text-align: center;
-      margin: 40px 0;
+      padding: 15px;
       font-size: 0.9em;
-      color: #00ffff99;
+      color: var(--neon-blue);
+      opacity: 0.8;
+    }
+
+    /* 📱 Адаптив */
+    @media (max-width: 600px) {
+      nav {
+        gap: 10px;
+      }
+      .project-info {
+        grid-template-columns: 1fr;
+      }
+      .main-panel {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Мій Кіберпанк Блог</h1>
+    <h1 id="title">burn2destroy</h1>
     <nav>
-      <a href="#">Проекти</a>
-      <a href="#">Контакти</a>
-      <a href="#">Підтримати</a>
-      <span class="language-toggle" onclick="toggleLanguage()">UK / EN</span>
+      <a href="/projects/index.html" data-key="projects">Проекти</a>
+      <a href="/contacts/index.html" data-key="contacts">Контакти</a>
+      <a href="/support/index.html" data-key="support">Підтримати</a>
+      <div class="lang-switch" onclick="switchLanguage()">
+        <span id="lang-uk" class="active">UK</span>
+        <span id="lang-en">EN</span>
+      </div>
     </nav>
   </header>
 
   <main>
     <div class="main-panel">
-      <h2>Зараз я працюю над:</h2>
+      <h2 id="working-on">Зараз я працюю над:</h2>
       <div class="project-info">
         <div class="info-block">
-          <strong>Назва:</strong>
-          <span id="project-name">Система керування дронами</span>
+          <strong id="label-name">Назва:</strong>
+          <span id="project-name">Dispatch - повна українська локалізація</span>
         </div>
         <div class="info-block">
-          <strong>Original Name:</strong>
-          <span id="project-original">Drone Control System</span>
+          <strong id="label-original">Name:</strong>
+          <span id="project-original">Dispatch - Full Ukrainian Localization</span>
         </div>
         <div class="info-block">
-          <strong>Статус:</strong>
-          <span id="project-status">Розробка</span>
+          <strong id="label-status">Статус:</strong>
+          <span id="project-status">Активна розробка</span>
         </div>
         <div class="info-block">
-          <strong>Готовність:</strong>
-          <span id="project-progress">65%</span>
+          <strong id="label-details">Деталі:</strong>
+          <span id="project-details">1 епізод - повна текстова локалізація, початок роботи над аудіо</span>
+        </div>
+        <div class="info-block">
+          <strong id="label-progress">Готовність:</strong>
+          <span id="project-progress">10%</span>
         </div>
       </div>
     </div>
@@ -153,32 +212,40 @@
   </footer>
 
   <script>
-    function toggleLanguage() {
-      const lang = document.documentElement.lang;
-      if (lang === 'uk') {
-        document.documentElement.lang = 'en';
-        document.querySelector('h1').textContent = 'My Cyberpunk Blog';
-        document.querySelector('h2').textContent = 'Currently working on:';
-        document.querySelector('#project-name').textContent = 'Drone Control System';
-        document.querySelector('#project-original').textContent = 'Система керування дронами';
-        document.querySelector('#project-status').textContent = 'In Development';
-        document.querySelector('#project-progress').textContent = '65%';
-        document.querySelectorAll('nav a')[0].textContent = 'Projects';
-        document.querySelectorAll('nav a')[1].textContent = 'Contacts';
-        document.querySelectorAll('nav a')[2].textContent = 'Support';
-      } else {
-        document.documentElement.lang = 'uk';
-        document.querySelector('h1').textContent = 'Мій Кіберпанк Блог';
-        document.querySelector('h2').textContent = 'Зараз я працюю над:';
-        document.querySelector('#project-name').textContent = 'Система керування дронами';
-        document.querySelector('#project-original').textContent = 'Drone Control System';
-        document.querySelector('#project-status').textContent = 'Розробка';
-        document.querySelector('#project-progress').textContent = '65%';
-        document.querySelectorAll('nav a')[0].textContent = 'Проекти';
-        document.querySelectorAll('nav a')[1].textContent = 'Контакти';
-        document.querySelectorAll('nav a')[2].textContent = 'Підтримати';
-      }
+    let currentLang = 'uk';
+    let translations = {};
+
+    async function loadTranslations() {
+      const res = await fetch('lang.json');
+      translations = await res.json();
+      applyTranslations();
     }
+
+    function switchLanguage() {
+      currentLang = currentLang === 'uk' ? 'en' : 'uk';
+      document.getElementById('lang-uk').classList.toggle('active', currentLang === 'uk');
+      document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+      applyTranslations();
+    }
+
+    function applyTranslations() {
+      const t = translations[currentLang];
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('working-on').textContent = t.working_on;
+      document.querySelector('[data-key="projects"]').textContent = t.menu.projects;
+      document.querySelector('[data-key="contacts"]').textContent = t.menu.contacts;
+      document.querySelector('[data-key="support"]').textContent = t.menu.support;
+      document.getElementById('label-name').textContent = t.labels.name;
+      document.getElementById('label-original').textContent = t.labels.original;
+      document.getElementById('label-status').textContent = t.labels.status;
+      document.getElementById('label-progress').textContent = t.labels.progress;
+      document.getElementById('project-name').textContent = t.project.name;
+      document.getElementById('project-original').textContent = t.project.original;
+      document.getElementById('project-status').textContent = t.project.status;
+      document.getElementById('project-progress').textContent = t.project.progress;
+    }
+
+    loadTranslations();
   </script>
 </body>
 </html>
