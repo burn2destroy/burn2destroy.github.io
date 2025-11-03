@@ -1,2 +1,184 @@
-# burn2destroy.github.io
-burn2destroy Blog Page
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мій Кіберпанк Блог</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Share Tech Mono', monospace;
+      background-color: #0a0a0f;
+      color: #00ffff;
+      background-image: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.05), transparent 25%),
+                        radial-gradient(circle at 80% 80%, rgba(255,0,255,0.05), transparent 25%);
+      background-size: 200% 200%;
+      animation: bgShift 20s ease infinite;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 2px solid #00ffff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff00ff;
+      text-shadow: 0 0 5px #ff00ff;
+    }
+
+    .language-toggle {
+      cursor: pointer;
+      border: 1px solid #00ffff;
+      border-radius: 5px;
+      padding: 3px 8px;
+      margin-left: 15px;
+    }
+
+    .main-panel {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #ff00ff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff00ff66;
+    }
+
+    .main-panel h2 {
+      text-align: center;
+      color: #00ffff;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .info-block {
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid #00ffff;
+      border-radius: 8px;
+      padding: 15px;
+      transition: 0.3s;
+    }
+
+    .info-block:hover {
+      background: rgba(255, 0, 255, 0.1);
+      box-shadow: 0 0 10px #ff00ff44;
+    }
+
+    .info-block strong {
+      display: block;
+      color: #ff00ff;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 0.9em;
+      color: #00ffff99;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Мій Кіберпанк Блог</h1>
+    <nav>
+      <a href="#">Проекти</a>
+      <a href="#">Контакти</a>
+      <a href="#">Підтримати</a>
+      <span class="language-toggle" onclick="toggleLanguage()">UK / EN</span>
+    </nav>
+  </header>
+
+  <main>
+    <div class="main-panel">
+      <h2>Зараз я працюю над:</h2>
+      <div class="project-info">
+        <div class="info-block">
+          <strong>Назва:</strong>
+          <span id="project-name">Система керування дронами</span>
+        </div>
+        <div class="info-block">
+          <strong>Original Name:</strong>
+          <span id="project-original">Drone Control System</span>
+        </div>
+        <div class="info-block">
+          <strong>Статус:</strong>
+          <span id="project-status">Розробка</span>
+        </div>
+        <div class="info-block">
+          <strong>Готовність:</strong>
+          <span id="project-progress">65%</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 — Створено у неоновому світі майбутнього ⚡
+  </footer>
+
+  <script>
+    function toggleLanguage() {
+      const lang = document.documentElement.lang;
+      if (lang === 'uk') {
+        document.documentElement.lang = 'en';
+        document.querySelector('h1').textContent = 'My Cyberpunk Blog';
+        document.querySelector('h2').textContent = 'Currently working on:';
+        document.querySelector('#project-name').textContent = 'Drone Control System';
+        document.querySelector('#project-original').textContent = 'Система керування дронами';
+        document.querySelector('#project-status').textContent = 'In Development';
+        document.querySelector('#project-progress').textContent = '65%';
+        document.querySelectorAll('nav a')[0].textContent = 'Projects';
+        document.querySelectorAll('nav a')[1].textContent = 'Contacts';
+        document.querySelectorAll('nav a')[2].textContent = 'Support';
+      } else {
+        document.documentElement.lang = 'uk';
+        document.querySelector('h1').textContent = 'Мій Кіберпанк Блог';
+        document.querySelector('h2').textContent = 'Зараз я працюю над:';
+        document.querySelector('#project-name').textContent = 'Система керування дронами';
+        document.querySelector('#project-original').textContent = 'Drone Control System';
+        document.querySelector('#project-status').textContent = 'Розробка';
+        document.querySelector('#project-progress').textContent = '65%';
+        document.querySelectorAll('nav a')[0].textContent = 'Проекти';
+        document.querySelectorAll('nav a')[1].textContent = 'Контакти';
+        document.querySelectorAll('nav a')[2].textContent = 'Підтримати';
+      }
+    }
+  </script>
+</body>
+</html>
