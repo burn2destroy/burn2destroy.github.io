@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      scroll-behavior: smooth;
       background-image: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.05), transparent 25%),
                         radial-gradient(circle at 80% 80%, rgba(255,0,255,0.05), transparent 25%);
       animation: bgShift 20s ease infinite;
@@ -64,6 +65,7 @@
       text-decoration: none;
       font-weight: bold;
       transition: 0.3s;
+      cursor: pointer;
     }
 
     nav a:hover {
@@ -96,12 +98,14 @@
     main {
       flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 40px 20px;
+      gap: 60px;
     }
 
-    .main-panel {
+    .main-panel, .support-panel {
       width: 100%;
       max-width: 700px;
       padding: 25px;
@@ -151,17 +155,10 @@
       opacity: 0.8;
     }
 
-    /* 📱 Адаптив */
+    /* AdaptiveUI */
     @media (max-width: 600px) {
-      nav {
-        gap: 10px;
-      }
-      .project-info {
-        grid-template-columns: 1fr;
-      }
-      .main-panel {
-        padding: 15px;
-      }
+      .project-info { grid-template-columns: 1fr; }
+      .main-panel { padding: 15px; }
     }
   </style>
 </head>
@@ -169,83 +166,124 @@
   <header>
     <h1 id="title">burn2destroy</h1>
     <nav>
-      <a href="/projects/index.html" data-key="projects">Проекти</a>
-      <a href="/contacts/index.html" data-key="contacts">Контакти</a>
-      <a href="/support/index.html" data-key="support">Підтримати</a>
+      <a data-key="projects" onclick="scrollToProjects()">Projects</a>
+      <a data-key="contacts" onclick="scrollToContacts()">Contacts</a>
+      <a data-key="support" onclick="scrollToSupport()">Support</a>
       <div class="lang-switch" onclick="switchLanguage()">
-        <span id="lang-uk" class="active">UK</span>
-        <span id="lang-en">EN</span>
+        <span id="lang-en" class="active">EN</span>
+        <span id="lang-uk">UK</span>
       </div>
     </nav>
   </header>
 
   <main>
     <div class="main-panel">
-      <h2 id="working-on">Зараз я працюю над:</h2>
+      <h2 id="working-on">Currently working on:</h2>
       <div class="project-info">
         <div class="info-block">
-          <strong id="label-name">Назва:</strong>
-          <span id="project-name">Dispatch - повна українська локалізація</span>
+          <strong id="label-name">Name:</strong>
+          <span id="project-name">Dispatch - Full Ukrainian Localization</span>
         </div>
         <div class="info-block">
-          <strong id="label-original">Name:</strong>
-          <span id="project-original">Dispatch - Full Ukrainian Localization</span>
+          <strong id="label-status">Status:</strong>
+          <span id="project-status">Active development</span>
         </div>
         <div class="info-block">
-          <strong id="label-status">Статус:</strong>
-          <span id="project-status">Активна розробка</span>
-        </div>
-        <div class="info-block">
-          <strong id="label-details">Деталі:</strong>
-          <span id="project-details">1 епізод - повна текстова локалізація, початок роботи над аудіо</span>
-        </div>
-        <div class="info-block">
-          <strong id="label-progress">Готовність:</strong>
+          <strong id="label-progress">Progress:</strong>
           <span id="project-progress">10%</span>
         </div>
+        <div class="info-block">
+          <strong id="label-details">Details:</strong>
+          <span id="project-details">In Progress -> Working on translation of the next episodes, working with VO</span>
+        </div>
       </div>
+    </div>
+
+    <div class="support-panel" id="support-section">
+      <h2 id="support-title">Support</h2>
+      <p id="support-text" style="text-align:center;">
+        If you like my work — you can support me here:<br><br>
+        <a href="https://donatello.to/burn2destroy" target="_blank" style="color:var(--neon-pink); text-decoration:none;">
+          Donatello.to
+        </a><br>
+      </p>
     </div>
   </main>
 
   <footer>
-    © 2025 — Створено у неоновому світі майбутнього ⚡
+    © 2025 — Created in the neon world of the future ⚡
   </footer>
 
   <script>
-    let currentLang = 'uk';
-    let translations = {};
+    const translations = {
+      en: {
+        title: "burn2destroy",
+        menu: { projects: "Projects", contacts: "Contacts", support: "Support" },
+        working_on: "Currently working on:",
+        labels: { name: "Name:", status: "Status:", progress: "Progress:", details: "Details:" },
+        project: {
+          name: "Dispatch - Full Ukrainian Localization",
+          status: "Active development",
+          progress: "10%",
+          details: "Episode 1 - full text localization, started VO"
+        },
+        support_title: "Support",
+        support_text: "If you like my work — you can support me here:",
+        footer: "© 2025 — Created in the neon world of the future ⚡"
+      },
+      uk: {
+        title: "burn2destroy",
+        menu: { projects: "Проекти", contacts: "Контакти", support: "Підтримати" },
+        working_on: "Зараз в роботі:",
+        labels: { name: "Назва:", status: "Статус:", progress: "Готовність:", details: "Деталі:" },
+        project: {
+          name: "Dispatch - повна українська локалізація",
+          status: "Активна розробка",
+          progress: "10%",
+          details: "1 епізод — повна текстова локалізація, початок роботи над аудіо"
+        },
+        support_title: "Підтримати",
+        support_text: "Якщо вам подобається моя робота — можете підтримати мене тут:",
+        footer: "© 2025 — Створено у неоновому світі майбутнього ⚡"
+      }
+    };
 
-    async function loadTranslations() {
-      const res = await fetch('lang.json');
-      translations = await res.json();
-      applyTranslations();
-    }
-
-    function switchLanguage() {
-      currentLang = currentLang === 'uk' ? 'en' : 'uk';
-      document.getElementById('lang-uk').classList.toggle('active', currentLang === 'uk');
-      document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
-      applyTranslations();
-    }
+    let currentLang = 'en';
 
     function applyTranslations() {
       const t = translations[currentLang];
       document.getElementById('title').textContent = t.title;
-      document.getElementById('working-on').textContent = t.working_on;
       document.querySelector('[data-key="projects"]').textContent = t.menu.projects;
       document.querySelector('[data-key="contacts"]').textContent = t.menu.contacts;
       document.querySelector('[data-key="support"]').textContent = t.menu.support;
+      document.getElementById('working-on').textContent = t.working_on;
       document.getElementById('label-name').textContent = t.labels.name;
       document.getElementById('label-original').textContent = t.labels.original;
       document.getElementById('label-status').textContent = t.labels.status;
       document.getElementById('label-progress').textContent = t.labels.progress;
+      document.getElementById('label-details').textContent = t.labels.details;
       document.getElementById('project-name').textContent = t.project.name;
       document.getElementById('project-original').textContent = t.project.original;
       document.getElementById('project-status').textContent = t.project.status;
       document.getElementById('project-progress').textContent = t.project.progress;
+      document.getElementById('project-details').textContent = t.project.details;
+      document.getElementById('support-title').textContent = t.support_title;
+      document.getElementById('support-text').firstChild.textContent = t.support_text + " ";
+      document.querySelector('footer').textContent = t.footer;
     }
 
-    loadTranslations();
+    function switchLanguage() {
+      currentLang = currentLang === 'en' ? 'uk' : 'en';
+      document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+      document.getElementById('lang-uk').classList.toggle('active', currentLang === 'uk');
+      applyTranslations();
+    }
+
+    function scrollToSupport() {
+      document.getElementById('support-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', applyTranslations);
   </script>
 </body>
 </html>
