@@ -110,10 +110,22 @@
       width: 100%;
       max-width: 700px;
       padding: 25px;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
       border: 2px solid var(--neon-pink);
       border-radius: 12px;
-      box-shadow: 0 0 20px var(--neon-pink, 0.4);
+      box-shadow:
+        0 0 20px var(--neon-pink),
+        0 0 40px rgba(255, 0, 255, 0.6),
+        inset 0 0 20px rgba(255, 0, 255, 0.3);
+      transition: 0.4s;
+    }
+
+    .main-panel:hover, .support-panel:hover {
+      box-shadow:
+        0 0 25px var(--neon-pink),
+        0 0 60px rgba(255, 0, 255, 0.8),
+        inset 0 0 25px rgba(255, 0, 255, 0.4);
+      transform: scale(1.01);
     }
 
     h2 {
@@ -137,9 +149,23 @@
       transition: 0.3s;
     }
 
+    .info-block {
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid var(--neon-blue);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow:
+        0 0 10px var(--neon-blue),
+        inset 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: 0.3s;
+    }
+
     .info-block:hover {
-      background: rgba(255,0,255,0.1);
-      box-shadow: 0 0 10px var(--neon-pink, 0.4);
+      background: rgba(255, 0, 255, 0.1);
+      box-shadow:
+        0 0 15px var(--neon-pink),
+        0 0 30px rgba(255, 0, 255, 0.5),
+        inset 0 0 15px rgba(255, 0, 255, 0.3);
     }
 
     strong {
@@ -154,6 +180,14 @@
       font-size: 0.9em;
       color: var(--neon-blue);
       opacity: 0.8;
+    }
+
+    h1, h2, strong, nav a {
+      text-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
     }
 
     /* AdaptiveUI */
@@ -194,6 +228,7 @@
     .glitching {
       animation: glitch 0.6s steps(2, end);
     }
+
   </style>
 </head>
 <body>
