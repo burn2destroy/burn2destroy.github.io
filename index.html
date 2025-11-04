@@ -37,20 +37,37 @@
 
     header {
       background: rgba(0,0,0,0.8);
-      border-bottom: 2px solid var(--neon-blue);
-      padding: 15px;
-      text-align: center;
+      border-bottom: 1px solid var(--neon-blue);
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 1.8em;
-      color: var(--neon-pink);
-      text-shadow: 0 0 8px var(--neon-pink);
+    .header-left {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+      h1 {
+        margin: 0;
+        font-size: 1.8em;
+        color: var(--neon-pink);
+        text-shadow: 0 0 8px var(--neon-pink);
+        text-align: center; /* важливо */
+      }
 
     nav {
       margin-top: 10px;
@@ -199,6 +216,13 @@
         font-size: 0.9em;
       }
     }
+    .support-panel {
+      width: 100%;
+      max-width: 700px;
+      padding: 25px;
+      box-sizing: border-box; /* Додаємо це! */
+      overflow-x: auto;
+    }
 
     /* === Neon Flicker Effect (ефект розігріву) === */
     @keyframes neonFlicker {
@@ -272,22 +296,110 @@
     .support-panel.show-text * {
       animation: textAppear 0.6s ease forwards;
     }
+    /* === Neon Scrollbar (WebKit browsers: Chrome, Edge, Safari) === */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
 
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--neon-pink);
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+      transition: 0.3s;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--neon-blue);
+      box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
+    }
+
+    /* === Neon Scrollbar for Firefox === */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--neon-pink) rgba(0, 0, 0, 0.4);
+    }
+
+    /* === Optional: тільки для проектів (таблиці) === */
+    #projects-section {
+      overflow-x: auto;
+    }
+    #projects-section::-webkit-scrollbar-thumb {
+      background: var(--neon-blue);
+      box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    }
+
+        /* === Logo styling === */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .site-logo {
+      width: 80px;
+      height: auto;
+      filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
+      transition: all 0.4s ease;
+      animation: logoPulse 3s infinite ease-in-out;
+    }
+
+    /* Анімація "підсвічування" */
+    @keyframes logoPulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
+      }
+      50% {
+        filter: drop-shadow(0 0 60px var(--neon-blue)) brightness(1.8);
+      }
+    }
+
+    /* Ховер ефект */
+    .site-logo:hover {
+      filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(2);
+      transform: scale(1.15);
+    }
+
+    /* Адаптивність: на дуже малих екранах ховаємо лого */
+    @media (max-width: 500px) {
+      .site-logo {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
+<header>
+  <div class="header-left">
+    <img
+      src="assets/burn2destroy_logo_rounded-transparent.png"
+      alt="burn2destroy logo"
+      class="site-logo"
+      onclick="scrollToTop()"
+      style="cursor:pointer;"
+    >
+  </div>
+
+  <div class="header-right">
     <h1 id="title">burn2destroy</h1>
     <nav>
       <a data-key="projects" onclick="goToProjects()">Projects</a>
       <a data-key="contacts" onclick="scrollToContacts()">Contacts</a>
       <a data-key="support" onclick="scrollToSupport()">Support</a>
       <div class="lang-switch" onclick="switchLanguage()">
-        <span id="lang-en" class="active">EN</span>
-        <span id="lang-ua">UA</span>
+        <span id="lang-en">EN</span>
+        <span id="lang-ua" class="active">UA</span>
       </div>
     </nav>
-  </header>
+  </div>
+</header>
+
 
   <main>
     <div class="main-panel">
@@ -329,9 +441,39 @@
         Email: <a href="mailto:yevhen.shilenko@gmail.com" style="color:var(--neon-pink);">burn2destroy@gmail.com</a>
       </p>
     </div>
-
+    <!-- NEW PROJECTS SECTION -->
+    <div class="support-panel" id="projects-section">
+      <h2 id="projects-title">Projects</h2>
+      <table style="width:100%; border-collapse:collapse; color:var(--neon-blue); text-align:left;">
+        <thead>
+          <tr>
+            <th id="th-name" style="border-bottom:2px solid var(--neon-pink); padding:10px;">Name</th>
+            <th id="th-status" style="border-bottom:2px solid var(--neon-pink); padding:10px;">Status</th>
+            <th id="th-progress" style="border-bottom:2px solid var(--neon-pink); padding:10px;">Progress</th>
+            <th id="th-link" style="border-bottom:2px solid var(--neon-pink); padding:10px;">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px;">Dispatch</td>
+            <td style="padding:10px;">Active development</td>
+            <td style="padding:10px;">10%</td>
+            <td style="padding:10px;">Coming soon
+              <!-- <a href="#" style="color:var(--neon-pink); text-decoration:none;">View</a> -->
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px;">The Wolf Among Us</td>
+            <td style="padding:10px;">Planning</td>
+            <td style="padding:10px;">0%</td>
+            <td style="padding:10px;">Coming soon
+              <!-- <a href="#" style="color:var(--neon-pink); text-decoration:none;">Coming soon</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
-
   <footer>
     © 2025 — Created in the neon world of the future ⚡
   </footer>
@@ -352,6 +494,8 @@
         support_title: "Support",
         support_text: "If you like my work — you can support me here:",
         contacts_title: "Contacts",
+        projects_title: "My projects",
+        th: { name: "Name", status: "Status", progress: "Progress", link: "Link" },
         footer: "© 2025 — Created in the neon world of the future ⚡"
       },
       ua: {
@@ -368,16 +512,13 @@
         support_title: "Підтримати",
         support_text: "Якщо вам подобається моя робота — можете підтримати мене тут:",
         contacts_title: "Контакти",
+        projects_title: "Усі проекти",
+        th: { name: "Назва", status: "Статус", progress: "Готовність", link: "Посилання" },
         footer: "© 2025 — Створено у неоновому світі майбутнього ⚡"
       }
     };
 
     let currentLang = 'ua';
-
-    function goToProjects() {
-      localStorage.setItem('lang', currentLang);
-      window.location.href = 'projects.html';
-    }
 
     function applyTranslations() {
       const t = translations[currentLang];
@@ -397,6 +538,11 @@
       document.getElementById('support-title').textContent = t.support_title;
       document.getElementById('support-text').firstChild.textContent = t.support_text + " ";
       document.getElementById('contacts-title').textContent = t.contacts_title;
+      document.getElementById('projects-title').textContent = t.projects_title;
+      document.getElementById('th-name').textContent = t.th.name;
+      document.getElementById('th-status').textContent = t.th.status;
+      document.getElementById('th-progress').textContent = t.th.progress;
+      document.getElementById('th-link').textContent = t.th.link;
       document.querySelector('footer').textContent = t.footer;
     }
 
@@ -426,12 +572,23 @@
     }
 
 
-    function scrollToSupport() {
-      document.getElementById('support-section').scrollIntoView({ behavior: 'smooth' });
-    }
-    function scrollToContacts() {
-      document.getElementById('contacts-section').scrollIntoView({ behavior: 'smooth' });
-    }
+      function scrollToSection(id) {
+        const section = document.getElementById(id);
+        const header = document.querySelector("header");
+        const headerHeight = header.offsetHeight; // точна висота
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY - headerHeight - 20; // невеликий запас
+
+        window.scrollTo({
+          top: sectionTop,
+          behavior: "smooth"
+        });
+      }
+
+      function goToProjects() { scrollToSection("projects-section"); }
+      function scrollToContacts() { scrollToSection("contacts-section"); }
+      function scrollToSupport() { scrollToSection("support-section"); }
+
+
     document.addEventListener('DOMContentLoaded', applyTranslations);
   </script>
   <!-- Spark Effect -->
@@ -589,6 +746,10 @@
       document.body.classList.remove("startup");
     }, 7500);
   });
+
+    function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   </script>
 
 </body>
