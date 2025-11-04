@@ -38,20 +38,22 @@
     header {
       background: rgba(0,0,0,0.8);
       border-bottom: 1px solid var(--neon-blue);
-      padding: 10px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 20px;
+      padding: 10px 20px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
     .header-left {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 10px;
     }
 
     .header-right {
@@ -68,16 +70,19 @@
         text-shadow: 0 0 8px var(--neon-pink);
         text-align: center; /* важливо */
       }
-
-    nav {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
+    header h1 {
+      margin: 0;
+      font-size: 1.4em;
+      color: var(--neon-pink);
+      text-shadow: 0 0 8px var(--neon-pink);
+      white-space: nowrap;
     }
-
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
     nav a {
       color: var(--neon-blue);
       text-decoration: none;
@@ -85,7 +90,6 @@
       transition: 0.3s;
       cursor: pointer;
     }
-
     nav a:hover {
       color: var(--neon-pink);
       text-shadow: 0 0 5px var(--neon-pink);
@@ -343,11 +347,10 @@
     }
 
     .site-logo {
-      width: 80px;
+      width: 50px;
       height: auto;
       filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
-      transition: all 0.4s ease;
-      animation: logoPulse 3s infinite ease-in-out;
+      transition: all 0.3s ease;
     }
 
     /* Анімація "підсвічування" */
@@ -367,27 +370,43 @@
     }
 
     /* Адаптивність: на дуже малих екранах ховаємо лого */
-    @media (max-width: 500px) {
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 1.1em;
+      }
+
       .site-logo {
+        width: 40px;
+      }
+    }
+    @media (max-width: 500px) {
+      /* ховаємо logo і title */
+      .site-logo,
+      header h1 {
         display: none;
+      }
+
+      nav {
+        justify-content: center;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
 <header>
-  <div class="header-left">
-    <img
-      src="assets/burn2destroy_logo_rounded-transparent.png"
-      alt="burn2destroy logo"
-      class="site-logo"
-      onclick="scrollToTop()"
-      style="cursor:pointer;"
-    >
-  </div>
+  <div class="header-content">
+    <div class="header-left">
+      <img
+        src="assets/burn2destroy_logo_rounded-transparent.png"
+        alt="burn2destroy logo"
+        class="site-logo"
+        onclick="scrollToTop()"
+        style="cursor:pointer;"
+      >
+      <h1 id="title">burn2destroy</h1>
+    </div>
 
-  <div class="header-right">
-    <h1 id="title">burn2destroy</h1>
     <nav>
       <a data-key="projects" onclick="goToProjects()">Projects</a>
       <a data-key="contacts" onclick="scrollToContacts()">Contacts</a>
@@ -399,6 +418,7 @@
     </nav>
   </div>
 </header>
+
 
 
   <main>
