@@ -165,6 +165,35 @@
         font-size: 0.9em;
       }
     }
+    /* === Glitch Effect === */
+    @keyframes glitch {
+      0% {
+        text-shadow: 2px 0 var(--neon-pink), -2px 0 var(--neon-blue);
+      }
+      20% {
+        text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-blue);
+        transform: skew(0.5deg);
+      }
+      40% {
+        text-shadow: 3px 0 var(--neon-blue), -3px 0 var(--neon-pink);
+        transform: skew(-0.5deg);
+      }
+      60% {
+        text-shadow: -1px 0 var(--neon-pink), 1px 0 var(--neon-blue);
+      }
+      80% {
+        text-shadow: 1px 0 var(--neon-blue), -1px 0 var(--neon-pink);
+        transform: skew(0.5deg);
+      }
+      100% {
+        text-shadow: none;
+        transform: none;
+      }
+    }
+
+    .glitching {
+      animation: glitch 0.6s steps(2, end);
+    }
   </style>
 </head>
 <body>
@@ -176,7 +205,7 @@
       <a data-key="support" onclick="scrollToSupport()">Support</a>
       <div class="lang-switch" onclick="switchLanguage()">
         <span id="lang-en" class="active">EN</span>
-        <span id="lang-uk">UK</span>
+        <span id="lang-ua">UA</span>
       </div>
     </nav>
   </header>
@@ -236,7 +265,7 @@
         support_text: "If you like my work — you can support me here:",
         footer: "© 2025 — Created in the neon world of the future ⚡"
       },
-      uk: {
+      ua: {
         title: "burn2destroy",
         menu: { projects: "Проекти", contacts: "Контакти", support: "Підтримати" },
         working_on: "Зараз в роботі:",
@@ -253,7 +282,7 @@
       }
     };
 
-    let currentLang = 'en';
+    let currentLang = 'ua';
 
     function goToProjects() {
       localStorage.setItem('lang', currentLang);
@@ -281,10 +310,24 @@
     }
 
     function switchLanguage() {
-      currentLang = currentLang === 'en' ? 'uk' : 'en';
-      document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
-      document.getElementById('lang-uk').classList.toggle('active', currentLang === 'uk');
-      applyTranslations();
+      const allTextElements = document.querySelectorAll(
+        "h1, h2, a, strong, span, p, footer"
+      );
+
+      // Додаємо клас glitching
+      allTextElements.forEach(el => el.classList.add("glitching"));
+
+      // Коли анімація закінчиться (через 600 мс), міняємо мову
+      setTimeout(() => {
+        currentLang = currentLang === 'en' ? 'ua' : 'en';
+        document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+        document.getElementById('lang-ua').classList.toggle('active', currentLang === 'ua');
+
+        applyTranslations();
+
+        // Прибираємо glitch
+        allTextElements.forEach(el => el.classList.remove("glitching"));
+      }, 600);
     }
 
     function scrollToSupport() {
