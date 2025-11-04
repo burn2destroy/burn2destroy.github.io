@@ -344,7 +344,7 @@
     let sparks = [];
     let drawing = false;
     let timer = null;
-
+    let lastSparkTime = 0;
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -353,17 +353,19 @@
     resizeCanvas();
 
     // створення частинок
-    function createSparks(x, y) {
-      for (let i = 0; i < 15; i++) {
+    function createSparks(x, y, speed = 1) {
+      const count = Math.floor(3 + speed * 2);
+      for (let i = 0; i < count; i++) {
         sparks.push({
           x,
           y,
-          vx: (Math.random() - 0.5) * 2,
-          vy: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 3 * speed,
+          vy: -Math.random() * 2 * speed,
           size: Math.random() * 2 + 1,
-          life: 60 + Math.random() * 20,
+          life: 60 + Math.random() * 30,
+          initialLife: 80,
           alpha: 1,
-          color: `hsl(${45 + Math.random() * 15}, 100%, ${40 + Math.random() * 30}%)`
+          color: `hsl(${45 + Math.random() * 15}, 100%, 50%)`
         });
       }
     }
@@ -375,7 +377,8 @@
         const s = sparks[i];
         s.x += s.vx;
         s.y += s.vy;
-        s.vy += 0.05; // гравітація
+        s.vy += 0.03 + Math.random() * 0.02;
+        s.vx *= 0.98;
         s.life--;
         s.alpha = s.life / 80;
         if (s.life <= 0) sparks.splice(i, 1);
@@ -384,7 +387,7 @@
           ctx.globalAlpha = s.alpha;
           ctx.strokeStyle = s.color;
           ctx.lineWidth = s.size;
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 15 * (s.alpha + 0.3);
           ctx.shadowColor = s.color;
           ctx.moveTo(s.x, s.y);
           ctx.lineTo(s.x - s.vx * 2, s.y - s.vy * 2); // витягнута форма
@@ -407,10 +410,14 @@
 
     function draw(e) {
       if (!drawing) return;
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
-      createSparks(x, y);
-    }
+      const now = Date.now();
+      if (now - lastSparkTime < 30) return; // максимум ~33 кадри/сек
+      lastSparkTime = now;
+
+  const x = e.touches ? e.touches[0].clientX : e.clientX;
+  const y = e.touches ? e.touches[0].clientY : e.clientY;
+  createSparks(x, y);
+}
 
     function stopDrawing() {
       drawing = false;
