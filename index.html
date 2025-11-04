@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>burn2destroy</title>
+  <link rel="icon" type="image/png" href="assets/burn2destroy_logo_rounded-transparent.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -156,9 +157,13 @@
     }
 
     /* AdaptiveUI */
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       .project-info { grid-template-columns: 1fr; }
       .main-panel { padding: 15px; }
+      nav {
+        gap: 8px;
+        font-size: 0.9em;
+      }
     }
   </style>
 </head>
@@ -166,7 +171,7 @@
   <header>
     <h1 id="title">burn2destroy</h1>
     <nav>
-      <a data-key="projects" onclick="scrollToProjects()">Projects</a>
+      <a data-key="projects" onclick="goToProjects()">Projects</a>
       <a data-key="contacts" onclick="scrollToContacts()">Contacts</a>
       <a data-key="support" onclick="scrollToSupport()">Support</a>
       <div class="lang-switch" onclick="switchLanguage()">
@@ -250,6 +255,11 @@
 
     let currentLang = 'en';
 
+    function goToProjects() {
+      localStorage.setItem('lang', currentLang);
+      window.location.href = 'projects.html';
+    }
+
     function applyTranslations() {
       const t = translations[currentLang];
       document.getElementById('title').textContent = t.title;
@@ -258,12 +268,10 @@
       document.querySelector('[data-key="support"]').textContent = t.menu.support;
       document.getElementById('working-on').textContent = t.working_on;
       document.getElementById('label-name').textContent = t.labels.name;
-      document.getElementById('label-original').textContent = t.labels.original;
       document.getElementById('label-status').textContent = t.labels.status;
       document.getElementById('label-progress').textContent = t.labels.progress;
       document.getElementById('label-details').textContent = t.labels.details;
       document.getElementById('project-name').textContent = t.project.name;
-      document.getElementById('project-original').textContent = t.project.original;
       document.getElementById('project-status').textContent = t.project.status;
       document.getElementById('project-progress').textContent = t.project.progress;
       document.getElementById('project-details').textContent = t.project.details;
