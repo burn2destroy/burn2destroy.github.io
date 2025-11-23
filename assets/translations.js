@@ -5,7 +5,7 @@ const translations = {
         working_on: "Currently working on:",
         labels: { name: "Name:", status: "Status:", progress: "Progress:", details: "Details:" },
         project: {
-            name: "The Wolf Among Us - Full Ukrainian Localization",
+            name: "The Wolf Among Us",
             status: "Planning",
             progress: "0%",
             details: "Preparation stage"
@@ -22,8 +22,8 @@ const translations = {
         },
         footer: "© 2025 — Created in the neon world of the future ⚡",
         wolf_page: {
-            title: "The Wolf Among Us - Ukrainian Localization",
-            description: "Full Ukrainian localization of the cult game from Telltale Games. The project includes translation of all text, textures and voice acting.",
+            title: "The Wolf Among Us",
+            description: "Full ukrainian localization of the cult game from Telltale Games. The project includes translation of all text, textures and voice acting.",
             gallery: "Gallery",
             back: "Back to Home"
         }
@@ -34,7 +34,7 @@ const translations = {
         working_on: "Зараз в роботі:",
         labels: { name: "Назва:", status: "Статус:", progress: "Готовність:", details: "Деталі:" },
         project: {
-            name: "The Wolf Among Us - повна українська локалізація",
+            name: "The Wolf Among Us",
             status: "Планування",
             progress: "0%",
             details: "Етап підготовки"
@@ -51,7 +51,7 @@ const translations = {
         },
         footer: "© 2025 — Створено у неоновому світі майбутнього ⚡",
         wolf_page: {
-            title: "The Wolf Among Us - Українська локалізація",
+            title: "The Wolf Among Us",
             description: "Повна українська локалізація культової гри від Telltale Games. Проект включає переклад всього тексту, текстур та озвучення.",
             gallery: "Галерея",
             back: "На головну"
