@@ -12,7 +12,14 @@ function applyTranslations() {
   if (typeof translations === 'undefined') return; // Wait for translations to load
   const t = translations[currentLang];
 
-  // Helper to safely set text content
+  // Helper to resolve nested keys (e.g. "project_table.wolf_name")
+  const getNestedValue = (obj, path) => {
+    return path.split('.').reduce((prev, curr) => {
+      return prev ? prev[curr] : null;
+    }, obj);
+  };
+
+  // Helper to safely set text content (Legacy)
   const setText = (id, text) => {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
@@ -23,10 +30,9 @@ function applyTranslations() {
     if (el) el.textContent = text;
   };
 
+  // Legacy mappings
   setText('title', t.title);
-  setSelectorText('[data-key="projects"]', t.menu.projects);
-  setSelectorText('[data-key="contacts"]', t.menu.contacts);
-  setSelectorText('[data-key="support"]', t.menu.support);
+  // Menu items have data-key, so generic logic handles them, but explicit set is fine too
   setText('working-on', t.working_on);
   setText('label-name', t.labels.name);
   setText('label-status', t.labels.status);
@@ -56,6 +62,15 @@ function applyTranslations() {
   setText('wolf-desc', t.wolf_page?.description);
   setText('wolf-gallery', t.wolf_page?.gallery);
   setSelectorText('.back-link', t.wolf_page?.back);
+
+  // Generic logic for new elements with data-key
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    const value = getNestedValue(t, key);
+    if (value) {
+      el.textContent = value;
+    }
+  });
 
   // Update active state of language buttons
   document.getElementById("lang-en")?.classList.toggle("active", currentLang === "en");

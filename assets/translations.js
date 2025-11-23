@@ -15,6 +15,11 @@ const translations = {
         contacts_title: "Contacts",
         projects_title: "My projects",
         th: { name: "Name", status: "Status", progress: "Progress", link: "Link" },
+        project_table: {
+            wolf_name: "The Wolf Among Us",
+            wolf_status: "Planning",
+            wolf_link: "Coming soon"
+        },
         footer: "© 2025 — Created in the neon world of the future ⚡",
         wolf_page: {
             title: "The Wolf Among Us - Ukrainian Localization",
@@ -39,6 +44,11 @@ const translations = {
         contacts_title: "Контакти",
         projects_title: "Усі проекти",
         th: { name: "Назва", status: "Статус", progress: "Готовність", link: "Посилання" },
+        project_table: {
+            wolf_name: "The Wolf Among Us",
+            wolf_status: "Планування",
+            wolf_link: "Незабаром"
+        },
         footer: "© 2025 — Створено у неоновому світі майбутнього ⚡",
         wolf_page: {
             title: "The Wolf Among Us - Українська локалізація",

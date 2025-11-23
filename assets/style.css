@@ -417,18 +417,6 @@ body.startup * {
   overflow-x: auto;
 }
 
-#projects-section::-webkit-scrollbar-thumb {
-  background: var(--neon-blue);
-  box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-}
-
-/* === Logo styling === */
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 8px;
-}
 
 .site-logo {
   width: 50px;
