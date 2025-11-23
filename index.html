@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta name="description" content="burn2destroy — Yevhen Shilenko's projects and portfolio. Currently working on Ukrainian localization of Dispatch - PC game (Steam) by AdHoc Studio">
+  <meta name="description"
+    content="burn2destroy — Yevhen Shilenko's projects and portfolio. Currently working on Ukrainian localization of Dispatch - PC game (Steam) by AdHoc Studio">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="burn2destroy — project by Yevhen Shilenko">
   <meta property="og:description" content="Yevhen Shilenko's projects and neon portfolio.">
@@ -13,408 +15,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>burn2destroy</title>
   <link rel="icon" type="image/png" href="assets/burn2destroy_logo_rounded-transparent.png" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-    :root {
-      --neon-blue: #00ffff;
-      --neon-pink: #ff00ff;
-      --bg-dark: #0a0a0f;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Share Tech Mono', monospace;
-      background-color: var(--bg-dark);
-      color: var(--neon-blue);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      scroll-behavior: smooth;
-      background-image: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.05), transparent 25%),
-                        radial-gradient(circle at 80% 80%, rgba(255,0,255,0.05), transparent 25%);
-      animation: bgShift 20s ease infinite;
-      background-size: 200% 200%;
-    }
-
-    @keyframes bgShift {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-
-    header {
-      background: rgba(0,0,0,0.8);
-      border-bottom: 1px solid var(--neon-blue);
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .header-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-    }
-
-      h1 {
-        margin: 0;
-        font-size: 1.8em;
-        color: var(--neon-pink);
-        text-shadow: 0 0 8px var(--neon-pink);
-        text-align: center; /* важливо */
-      }
-    header h1 {
-      margin: 0;
-      font-size: 1.4em;
-      color: var(--neon-pink);
-      text-shadow: 0 0 8px var(--neon-pink);
-      white-space: nowrap;
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: var(--neon-blue);
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-    nav a:hover {
-      color: var(--neon-pink);
-      text-shadow: 0 0 5px var(--neon-pink);
-    }
-
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--neon-blue);
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .lang-switch span {
-      padding: 4px 10px;
-      font-size: 0.9em;
-      transition: 0.3s;
-    }
-
-    .lang-switch span.active {
-      background: var(--neon-blue);
-      color: #000;
-      text-shadow: none;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-      gap: 60px;
-    }
-
-    .main-panel, .support-panel {
-      width: 100%;
-      max-width: 700px;
-      padding: 25px;
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid var(--neon-pink);
-      border-radius: 12px;
-      box-shadow:
-        0 0 20px var(--neon-pink),
-        0 0 40px rgba(255, 0, 255, 0.6),
-        inset 0 0 20px rgba(255, 0, 255, 0.3);
-      transition: 0.4s;
-    }
-
-    .main-panel:hover, .support-panel:hover {
-      box-shadow:
-        0 0 25px var(--neon-pink),
-        0 0 60px rgba(255, 0, 255, 0.8),
-        inset 0 0 25px rgba(255, 0, 255, 0.4);
-      transform: scale(1.01);
-    }
-
-    h2 {
-      text-align: center;
-      color: var(--neon-blue);
-      text-shadow: 0 0 10px var(--neon-blue);
-      margin-bottom: 20px;
-    }
-
-    .project-info {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .info-block {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid var(--neon-blue);
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow:
-        0 0 10px var(--neon-blue),
-        inset 0 0 10px rgba(0, 255, 255, 0.3);
-      transition: 0.3s;
-    }
-
-    .info-block:hover {
-      background: rgba(255, 0, 255, 0.1);
-      box-shadow:
-        0 0 15px var(--neon-pink),
-        0 0 30px rgba(255, 0, 255, 0.5),
-        inset 0 0 15px rgba(255, 0, 255, 0.3);
-    }
-
-    strong {
-      display: block;
-      color: var(--neon-pink);
-      margin-bottom: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 0.9em;
-      color: var(--neon-blue);
-      opacity: 0.8;
-    }
-
-    h1, h2, strong, nav a {
-      text-shadow:
-        0 0 5px currentColor,
-        0 0 10px currentColor,
-        0 0 20px currentColor,
-        0 0 40px currentColor;
-    }
-
-    /* AdaptiveUI */
-    @media (max-width: 480px) {
-      .project-info { grid-template-columns: 1fr; }
-      .main-panel { padding: 15px; }
-      nav {
-        gap: 8px;
-        font-size: 0.9em;
-      }
-    }
-    .support-panel {
-      width: 100%;
-      max-width: 700px;
-      padding: 25px;
-      box-sizing: border-box; /* Додаємо це! */
-      overflow-x: auto;
-    }
-
-    /* === Neon Flicker Effect (ефект розігріву) === */
-    @keyframes neonFlicker {
-      0%   { opacity: 0; text-shadow: none; }
-      10%  { opacity: 1; text-shadow: 0 0 5px var(--neon-pink); }
-      20%  { opacity: 0.3; text-shadow: none; }
-      30%  { opacity: 1; text-shadow: 0 0 10px var(--neon-pink); }
-      40%  { opacity: 0.2; text-shadow: none; }
-      55%  { opacity: 1; text-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink); }
-      70%  { opacity: 0.6; text-shadow: none; }
-      85%  { opacity: 1; text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
-      100% { opacity: 1; text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink); }
-    }
-
-    @keyframes menuFlicker {
-      0%   { opacity: 0; }
-      15%  { opacity: 0.4; }
-      30%  { opacity: 0.1; }
-      50%  { opacity: 1; }
-      65%  { opacity: 0.7; }
-      80%  { opacity: 1; }
-      100% { opacity: 1; }
-    }
-    /* === Neon Fade Effect === */
-    @keyframes neonFadeOut {
-      0%   { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    @keyframes neonFadeIn {
-      0%   { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    .fade-out {
-      animation: neonFadeOut 0.4s ease forwards;
-    }
-
-    .fade-in {
-      animation: neonFadeIn 0.6s ease forwards;
-    }
-
-    /* Етап 1 — логотип flicker */
-    #title.flicker {
-      animation: neonFlicker 2.5s ease forwards;
-    }
-
-    /* Етап 2 — меню flicker */
-    header nav.flicker {
-      animation: menuFlicker 2s ease forwards;
-    }
-
-    /* Приховує все на початку */
-    body.startup * {
-      opacity: 0;
-    }
-
-    /* Анімація появи рамок */
-    .main-panel.start,
-    .support-panel.start {
-      animation: panelAppear 0.8s ease forwards;
-    }
-
-    /* Анімація появи тексту (з затримкою) */
-    .main-panel.show-text *,
-    .support-panel.show-text * {
-      animation: textAppear 0.6s ease forwards;
-    }
-    /* === Neon Scrollbar (WebKit browsers: Chrome, Edge, Safari) === */
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--neon-pink);
-      border-radius: 10px;
-      box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
-      transition: 0.3s;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--neon-blue);
-      box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
-    }
-
-    /* === Neon Scrollbar for Firefox === */
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: var(--neon-pink) rgba(0, 0, 0, 0.4);
-    }
-
-    /* === Optional: тільки для проектів (таблиці) === */
-    #projects-section {
-      overflow-x: auto;
-    }
-    #projects-section::-webkit-scrollbar-thumb {
-      background: var(--neon-blue);
-      box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-    }
-
-        /* === Logo styling === */
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .site-logo {
-      width: 50px;
-      height: auto;
-      filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
-      transition: all 0.3s ease;
-    }
-
-    /* Анімація "підсвічування" */
-    @keyframes logoPulse {
-      0%, 100% {
-        filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
-      }
-      50% {
-        filter: drop-shadow(0 0 60px var(--neon-blue)) brightness(1.8);
-      }
-    }
-
-    /* Ховер ефект */
-    .site-logo:hover {
-      filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(2);
-      transform: scale(1.15);
-    }
-
-    /* Адаптивність: на дуже малих екранах ховаємо лого */
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 1.1em;
-      }
-
-      .site-logo {
-        width: 40px;
-      }
-    }
-    @media (max-width: 500px) {
-      /* ховаємо logo і title */
-      .site-logo,
-      header h1 {
-        display: none;
-      }
-
-      nav {
-        justify-content: center;
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/translations.js"></script>
 </head>
+
 <body>
-<header>
-  <div class="header-content">
-    <div class="header-left">
-      <img
-        src="assets/burn2destroy_logo_rounded-transparent.png"
-        alt="burn2destroy logo"
-        class="site-logo"
-        onclick="scrollToTop()"
-        style="cursor:pointer;"
-      >
-      <h1 id="title">burn2destroy</h1>
-    </div>
-
-    <nav>
-      <a data-key="projects" onclick="goToProjects()">Projects</a>
-      <a data-key="contacts" onclick="scrollToContacts()">Contacts</a>
-      <a data-key="support" onclick="scrollToSupport()">Support</a>
-      <div class="lang-switch" onclick="switchLanguage()">
-        <span id="lang-en">EN</span>
-        <span id="lang-ua" class="active">UA</span>
+  <header>
+    <div class="header-content">
+      <div class="header-left">
+        <img src="assets/burn2destroy_logo_rounded-transparent.png" alt="burn2destroy logo" class="site-logo"
+          onclick="scrollToTop()" style="cursor:pointer;">
+        <h1 id="title">burn2destroy</h1>
       </div>
-    </nav>
-  </div>
-</header>
 
-
+      <nav>
+        <a href="#projects-section" data-key="projects" onclick="goToProjects(); return false;">Projects</a>
+        <a href="#contacts-section" data-key="contacts" onclick="scrollToContacts(); return false;">Contacts</a>
+        <a href="#support-section" data-key="support" onclick="scrollToSupport(); return false;">Support</a>
+        <div class="lang-switch">
+          <button id="lang-en" onclick="switchLanguage()" aria-label="Switch language">EN</button>
+          <button id="lang-ua" class="active" onclick="switchLanguage()" aria-label="Switch language">UA</button>
+        </div>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <div class="main-panel">
@@ -422,19 +46,21 @@
       <div class="project-info">
         <div class="info-block">
           <strong id="label-name">Name:</strong>
-          <span id="project-name">Dispatch - Full Ukrainian Localization</span>
+          <a href="the-wolf-among-us/index.html" id="project-name"
+            style="color:var(--neon-blue); text-decoration:none; border-bottom: 1px dashed var(--neon-pink);">The Wolf
+            Among Us - Full Ukrainian Localization</a>
         </div>
         <div class="info-block">
           <strong id="label-status">Status:</strong>
-          <span id="project-status">Active development</span>
+          <span id="project-status">Planning</span>
         </div>
         <div class="info-block">
           <strong id="label-progress">Progress:</strong>
-          <span id="project-progress">10%</span>
+          <span id="project-progress">0%</span>
         </div>
         <div class="info-block">
           <strong id="label-details">Details:</strong>
-          <span id="project-details">In Progress -> Working on translation of the next episodes, working with VO</span>
+          <span id="project-details">Preparation stage</span>
         </div>
       </div>
     </div>
@@ -443,7 +69,8 @@
       <h2 id="support-title">Support</h2>
       <p id="support-text" style="text-align:center;">
         If you like my work — you can support me here:<br><br>
-        <a href="https://donatello.to/burn2destroy" target="_blank" style="color:var(--neon-pink); text-decoration:none;">
+        <a href="https://donatello.to/burn2destroy" target="_blank"
+          style="color:var(--neon-pink); text-decoration:none;">
           Donatello.to
         </a><br>
       </p>
@@ -452,7 +79,8 @@
     <div class="support-panel" id="contacts-section">
       <h2 id="contacts-title">Contacts</h2>
       <p style="text-align:center;">
-        Telegram: <a href="https://t.me/burn2destroy" target="_blank" style="color:var(--neon-pink);">@burn2destroy</a><br>
+        Telegram: <a href="https://t.me/burn2destroy" target="_blank"
+          style="color:var(--neon-pink);">@burn2destroy</a><br>
         Email: <a href="mailto:yevhen.shilenko@gmail.com" style="color:var(--neon-pink);">yevhen.shilenko@gmail.com</a>
       </p>
     </div>
@@ -493,279 +121,8 @@
     © 2025 — Created in the neon world of the future ⚡
   </footer>
 
-  <script>
-    const translations = {
-      en: {
-        title: "burn2destroy",
-        menu: { projects: "Projects", contacts: "Contacts", support: "Support" },
-        working_on: "Currently working on:",
-        labels: { name: "Name:", status: "Status:", progress: "Progress:", details: "Details:" },
-        project: {
-          name: "Dispatch - Full Ukrainian Localization",
-          status: "Active development",
-          progress: "10%",
-          details: "Episode 1 - full text localization, started VO"
-        },
-        support_title: "Support",
-        support_text: "If you like my work — you can support me here:",
-        contacts_title: "Contacts",
-        projects_title: "My projects",
-        th: { name: "Name", status: "Status", progress: "Progress", link: "Link" },
-        footer: "© 2025 — Created in the neon world of the future ⚡"
-      },
-      ua: {
-        title: "burn2destroy",
-        menu: { projects: "Проекти", contacts: "Контакти", support: "Підтримати" },
-        working_on: "Зараз в роботі:",
-        labels: { name: "Назва:", status: "Статус:", progress: "Готовність:", details: "Деталі:" },
-        project: {
-          name: "Dispatch - повна українська локалізація",
-          status: "Активна розробка",
-          progress: "10%",
-          details: "1 епізод — повна текстова локалізація, початок роботи над аудіо"
-        },
-        support_title: "Підтримати",
-        support_text: "Якщо вам подобається моя робота — можете підтримати мене тут:",
-        contacts_title: "Контакти",
-        projects_title: "Усі проекти",
-        th: { name: "Назва", status: "Статус", progress: "Готовність", link: "Посилання" },
-        footer: "© 2025 — Створено у неоновому світі майбутнього ⚡"
-      }
-    };
-
-    let currentLang = 'ua';
-
-    function applyTranslations() {
-      const t = translations[currentLang];
-      document.getElementById('title').textContent = t.title;
-      document.querySelector('[data-key="projects"]').textContent = t.menu.projects;
-      document.querySelector('[data-key="contacts"]').textContent = t.menu.contacts;
-      document.querySelector('[data-key="support"]').textContent = t.menu.support;
-      document.getElementById('working-on').textContent = t.working_on;
-      document.getElementById('label-name').textContent = t.labels.name;
-      document.getElementById('label-status').textContent = t.labels.status;
-      document.getElementById('label-progress').textContent = t.labels.progress;
-      document.getElementById('label-details').textContent = t.labels.details;
-      document.getElementById('project-name').textContent = t.project.name;
-      document.getElementById('project-status').textContent = t.project.status;
-      document.getElementById('project-progress').textContent = t.project.progress;
-      document.getElementById('project-details').textContent = t.project.details;
-      document.getElementById('support-title').textContent = t.support_title;
-      document.getElementById('support-text').firstChild.textContent = t.support_text + " ";
-      document.getElementById('contacts-title').textContent = t.contacts_title;
-      document.getElementById('projects-title').textContent = t.projects_title;
-      document.getElementById('th-name').textContent = t.th.name;
-      document.getElementById('th-status').textContent = t.th.status;
-      document.getElementById('th-progress').textContent = t.th.progress;
-      document.getElementById('th-link').textContent = t.th.link;
-      document.querySelector('footer').textContent = t.footer;
-    }
-
-    function switchLanguage() {
-      const container = document.querySelector("body"); // або .main-wrapper, якщо є
-
-      // 1️⃣ Скидаємо попередні анімаційні класи
-      container.classList.remove("fade-in", "fade-out");
-      void container.offsetWidth;
-
-      // 2️⃣ Запускаємо згасання
-      container.classList.add("fade-out");
-
-      // 3️⃣ Через 400 мс міняємо мову
-      setTimeout(() => {
-        currentLang = currentLang === "en" ? "ua" : "en";
-        document.getElementById("lang-en").classList.toggle("active", currentLang === "en");
-        document.getElementById("lang-ua").classList.toggle("active", currentLang === "ua");
-
-        applyTranslations();
-
-        // 4️⃣ Після заміни вмикаємо появу
-        container.classList.remove("fade-out");
-        void container.offsetWidth;
-        container.classList.add("fade-in");
-      }, 400);
-    }
-
-
-      function scrollToSection(id) {
-        const section = document.getElementById(id);
-        const header = document.querySelector("header");
-        const headerHeight = header.offsetHeight; // точна висота
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY - headerHeight - 20; // невеликий запас
-
-        window.scrollTo({
-          top: sectionTop,
-          behavior: "smooth"
-        });
-      }
-
-      function goToProjects() { scrollToSection("projects-section"); }
-      function scrollToContacts() { scrollToSection("contacts-section"); }
-      function scrollToSupport() { scrollToSection("support-section"); }
-
-
-    document.addEventListener('DOMContentLoaded', applyTranslations);
-  </script>
-  <!-- Spark Effect -->
   <canvas id="sparkCanvas"></canvas>
-  <script>
-    const canvas = document.getElementById('sparkCanvas');
-    const ctx = canvas.getContext('2d');
-    let sparks = [];
-    let drawing = false;
-    let timer = null;
-    let lastSparkTime = 0;
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // створення частинок
-    function createSparks(x, y, speed = 1) {
-      const count = Math.floor(3 + speed * 2);
-      for (let i = 0; i < count; i++) {
-        sparks.push({
-          x,
-          y,
-          vx: (Math.random() - 0.5) * 3 * speed,
-          vy: -Math.random() * 2 * speed,
-          size: Math.random() * 2 + 1,
-          life: 60 + Math.random() * 30,
-          initialLife: 80,
-          alpha: 1,
-          color: `hsl(${45 + Math.random() * 15}, 100%, 50%)`
-        });
-      }
-    }
-
-    // малювання частинок
-    function drawSparks() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = sparks.length - 1; i >= 0; i--) {
-        const s = sparks[i];
-        s.x += s.vx;
-        s.y += s.vy;
-        s.vy += 0.03 + Math.random() * 0.02;
-        s.vx *= 0.98;
-        s.life--;
-        s.alpha = s.life / 80;
-        if (s.life <= 0) sparks.splice(i, 1);
-        else {
-          ctx.beginPath();
-          ctx.globalAlpha = s.alpha;
-          ctx.strokeStyle = s.color;
-          ctx.lineWidth = s.size;
-          ctx.shadowBlur = 15 * (s.alpha + 0.3);
-          ctx.shadowColor = s.color;
-          ctx.moveTo(s.x, s.y);
-          ctx.lineTo(s.x - s.vx * 2, s.y - s.vy * 2); // витягнута форма
-          ctx.stroke();
-        }
-      }
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(drawSparks);
-    }
-    drawSparks();
-
-    // обробники
-    function startDrawing(e) {
-      drawing = true;
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
-      createSparks(x, y);
-      clearTimeout(timer);
-    }
-
-    function draw(e) {
-      if (!drawing) return;
-      const now = Date.now();
-      if (now - lastSparkTime < 30) return; // максимум ~33 кадри/сек
-      lastSparkTime = now;
-
-  const x = e.touches ? e.touches[0].clientX : e.clientX;
-  const y = e.touches ? e.touches[0].clientY : e.clientY;
-  createSparks(x, y);
-}
-
-    function stopDrawing() {
-      drawing = false;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        sparks = [];
-      }, 1000); // ефект зникає через секунду
-    }
-
-    // слухаємо події на документі, не на canvas
-    document.addEventListener('mousedown', startDrawing);
-    document.addEventListener('mousemove', draw);
-    document.addEventListener('mouseup', stopDrawing);
-
-    document.addEventListener('touchstart', startDrawing);
-    document.addEventListener('touchmove', draw);
-    document.addEventListener('touchend', stopDrawing);
-
-    // налаштування canvas поверх всього
-    canvas.style.position = 'fixed';
-    canvas.style.top = 0;
-    canvas.style.left = 0;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.zIndex = 9999;
-  </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.add("startup");
-
-    const title = document.getElementById("title");
-    const nav = document.querySelector("header nav");
-    const mainPanel = document.querySelector(".main-panel");
-    const supportPanel = document.querySelector(".support-panel");
-
-    setTimeout(() => {
-      title.classList.add("flicker");
-      document.body.classList.remove("startup"); // зняти одразу після старту першого ефекту
-    }, 400);
-  
-    // Крок 1: burn2destroy flicker
-    setTimeout(() => {
-      title.classList.add("flicker");
-    }, 400);
-
-    // Крок 2: меню flicker
-    setTimeout(() => {
-      nav.classList.add("flicker");
-    }, 3000);
-
-    // Крок 3: рамка головної панелі
-    setTimeout(() => {
-      mainPanel.classList.add("start");
-    }, 5000);
-
-    // Крок 4: текст головної панелі
-    setTimeout(() => {
-      mainPanel.classList.add("show-text");
-    }, 5800);
-
-    // Крок 5: рамка support
-    setTimeout(() => {
-      supportPanel.classList.add("start");
-    }, 6700);
-
-    // Крок 6: текст support
-    setTimeout(() => {
-      supportPanel.classList.add("show-text");
-      document.body.classList.remove("startup");
-    }, 7500);
-  });
-
-    function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  </script>
-
+  <script src="assets/script.js"></script>
 </body>
+
 </html>

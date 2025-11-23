@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --neon-blue: #00ffff;
+  --neon-pink: #ff00ff;
+  --bg-dark: #0a0a0f;
+}
+
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  background-color: var(--bg-dark);
+  color: var(--neon-blue);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  background-image: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.05), transparent 25%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.05), transparent 25%);
+  animation: bgShift 20s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+header {
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid var(--neon-blue);
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8em;
+  color: var(--neon-pink);
+  text-shadow: 0 0 8px var(--neon-pink);
+  text-align: center;
+  /* важливо */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.4em;
+  color: var(--neon-pink);
+  text-shadow: 0 0 8px var(--neon-pink);
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+nav a:hover {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--neon-blue);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.lang-switch button {
+  background: none;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.9em;
+  font-family: inherit;
+  color: var(--neon-blue);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lang-switch button.active {
+  background: var(--neon-blue);
+  color: #000;
+  text-shadow: none;
+}
+
+.lang-switch button:hover:not(.active) {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+}
+
+.main-panel,
+.support-panel {
+  width: 100%;
+  max-width: 700px;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-pink);
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px var(--neon-pink),
+    0 0 40px rgba(255, 0, 255, 0.6),
+    inset 0 0 20px rgba(255, 0, 255, 0.3);
+  transition: 0.4s;
+}
+
+.main-panel:hover,
+.support-panel:hover {
+  box-shadow:
+    0 0 25px var(--neon-pink),
+    0 0 60px rgba(255, 0, 255, 0.8),
+    inset 0 0 25px rgba(255, 0, 255, 0.4);
+  transform: scale(1.01);
+}
+
+h2 {
+  text-align: center;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+  margin-bottom: 20px;
+}
+
+.project-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.info-block {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid var(--neon-blue);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow:
+    0 0 10px var(--neon-blue),
+    inset 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: 0.3s;
+}
+
+.info-block:hover {
+  background: rgba(255, 0, 255, 0.1);
+  box-shadow:
+    0 0 15px var(--neon-pink),
+    0 0 30px rgba(255, 0, 255, 0.5),
+    inset 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+strong {
+  display: block;
+  color: var(--neon-pink);
+  margin-bottom: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  color: var(--neon-blue);
+  opacity: 0.8;
+}
+
+h1,
+h2,
+strong,
+nav a {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+}
+
+/* AdaptiveUI */
+@media (max-width: 480px) {
+  .project-info {
+    grid-template-columns: 1fr;
+  }
+
+  .main-panel {
+    padding: 15px;
+  }
+
+  nav {
+    gap: 8px;
+    font-size: 0.9em;
+  }
+}
+
+.support-panel {
+  width: 100%;
+  max-width: 700px;
+  padding: 25px;
+  box-sizing: border-box;
+  /* Додаємо це! */
+  overflow-x: auto;
+}
+
+/* === Neon Flicker Effect (ефект розігріву) === */
+@keyframes neonFlicker {
+  0% {
+    opacity: 0;
+    text-shadow: none;
+  }
+
+  10% {
+    opacity: 1;
+    text-shadow: 0 0 5px var(--neon-pink);
+  }
+
+  20% {
+    opacity: 0.3;
+    text-shadow: none;
+  }
+
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--neon-pink);
+  }
+
+  40% {
+    opacity: 0.2;
+    text-shadow: none;
+  }
+
+  55% {
+    opacity: 1;
+    text-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink);
+  }
+
+  70% {
+    opacity: 0.6;
+    text-shadow: none;
+  }
+
+  85% {
+    opacity: 1;
+    text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+  }
+}
+
+@keyframes menuFlicker {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.4;
+  }
+
+  30% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* === Neon Fade Effect === */
+@keyframes neonFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes neonFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: neonFadeOut 0.4s ease forwards;
+}
+
+.fade-in {
+  animation: neonFadeIn 0.6s ease forwards;
+}
+
+/* Етап 1 — логотип flicker */
+#title.flicker {
+  animation: neonFlicker 2.5s ease forwards;
+}
+
+/* Етап 2 — меню flicker */
+header nav.flicker {
+  animation: menuFlicker 2s ease forwards;
+}
+
+/* Приховує все на початку */
+body.startup * {
+  opacity: 0;
+}
+
+/* Анімація появи рамок */
+.main-panel.start,
+.support-panel.start {
+  animation: panelAppear 0.8s ease forwards;
+}
+
+/* Анімація появи тексту (з затримкою) */
+.main-panel.show-text *,
+.support-panel.show-text * {
+  animation: textAppear 0.6s ease forwards;
+}
+
+/* === Neon Scrollbar (WebKit browsers: Chrome, Edge, Safari) === */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-pink);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+  transition: 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
+}
+
+/* === Neon Scrollbar for Firefox === */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-pink) rgba(0, 0, 0, 0.4);
+}
+
+/* === Optional: тільки для проектів (таблиці) === */
+#projects-section {
+  overflow-x: auto;
+}
+
+#projects-section::-webkit-scrollbar-thumb {
+  background: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+}
+
+/* === Logo styling === */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.site-logo {
+  width: 50px;
+  height: auto;
+  filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
+  transition: all 0.3s ease;
+}
+
+/* Анімація "підсвічування" */
+@keyframes logoPulse {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px var(--neon-blue)) brightness(1.2);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 60px var(--neon-blue)) brightness(1.8);
+  }
+}
+
+/* Ховер ефект */
+.site-logo:hover {
+  filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(2);
+  transform: scale(1.15);
+}
+
+/* Адаптивність: на дуже малих екранах ховаємо лого */
+@media (max-width: 700px) {
+  header h1 {
+    font-size: 1.1em;
+  }
+
+  .site-logo {
+    width: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  /* ховаємо logo і title */
+  .site-logo,
+  header h1 {
+    display: none;
+  }
+
+  nav {
+    justify-content: center;
+    width: 100%;
+  }
+}
