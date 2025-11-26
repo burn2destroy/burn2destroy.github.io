@@ -4,6 +4,9 @@
 <head>
   <meta name="description"
     content="burn2destroy — a project by Yevhen Shilenko. Currently working on ukrainian localization of The Wolf Among Us">
+  <meta name="keywords"
+    content="burn2destroy, Yevhen Shilenko, localization, The Wolf Among Us, ukrainian localization, game translation, portfolio">
+  <link rel="canonical" href="https://burn2destroy.github.io/">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="burn2destroy — project by Yevhen Shilenko">
   <meta property="og:description" content="Projects by Yevhen Shilenko">
@@ -17,6 +20,24 @@
   <link rel="icon" type="image/png" href="assets/burn2destroy_logo_rounded-transparent.png" />
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/translations.js"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Yevhen Shilenko",
+      "url": "https://burn2destroy.github.io/",
+      "sameAs": [
+        "https://github.com/burn2destroy",
+        "https://steamcommunity.com/id/burn2destroy",
+        "https://t.me/burn2destroy"
+      ],
+      "jobTitle": "Translator & Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "burn2destroy"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -29,9 +50,9 @@
       </div>
 
       <nav>
-        <a href="#projects-section" data-key="projects" onclick="goToProjects(); return false;">Projects</a>
-        <a href="#contacts-section" data-key="contacts" onclick="scrollToContacts(); return false;">Contacts</a>
-        <a href="#support-section" data-key="support" onclick="scrollToSupport(); return false;">Support</a>
+        <a href="#projects-section" data-key="menu.projects" onclick="goToProjects(); return false;">Projects</a>
+        <a href="#contacts-section" data-key="menu.contacts" onclick="scrollToContacts(); return false;">Contacts</a>
+        <a href="#support-section" data-key="menu.support" onclick="scrollToSupport(); return false;">Support</a>
         <div class="lang-switch">
           <button id="lang-en" onclick="switchLanguage()" aria-label="Switch language">EN</button>
           <button id="lang-ua" class="active" onclick="switchLanguage()" aria-label="Switch language">UA</button>
